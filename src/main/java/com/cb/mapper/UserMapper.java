@@ -1,4 +1,4 @@
-package com.cb.dao;
+package com.cb.mapper;
 
 import com.cb.pojo.User;
 

@@ -59,7 +59,6 @@
         <!--<property name="endingDelimiter" value="`"/>-->
 
         <!-- 必须要有的，使用这个配置链接数据库
-            @TODO:是否可以扩展
          -->
         <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}"
                         userId="${jdbc.username}"
@@ -133,7 +132,7 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator targetPackage="com.cb.dao" type="XMLMAPPER"
+        <javaClientGenerator targetPackage="com.cb.mapper" type="XMLMAPPER"
                              targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="false"/>
