@@ -47,11 +47,15 @@
         <!-- 格式化XML代码 -->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
+        <!--pojo类实现序列化，位置必须位于property下，commentGenerator前-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
         <!-- 不生成注释 -->
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
+
 
 
         <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
@@ -87,7 +91,7 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <javaModelGenerator targetPackage="com.cb.pojo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="cn.enn.ygego.sunny.marketing.model.discount" targetProject="src/main/java">
             <!--  for MyBatis3/MyBatis3Simple
                 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
              -->
@@ -109,7 +113,7 @@
             <!--<property name="rootClass" value="com._520it.mybatis.domain.BaseDomain"/>-->
 
             <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
-            <property name="trimStrings" value="true"/>
+            <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
 
@@ -132,7 +136,7 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator targetPackage="com.cb.mapper" type="XMLMAPPER"
+        <javaClientGenerator targetPackage="cn.enn.ygego.sunny.marketing.dao.discount" type="XMLMAPPER"
                              targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="false"/>
@@ -180,8 +184,20 @@
 
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
-        <table tableName="cb_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false" >
+        <!--<table tableName="cb_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" > </table>-->
+        <table tableName="discount_rate_info" domainObjectName="DiscountRateInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" > </table>
+
+        <table tableName="standard_premium_rates_info" domainObjectName="StandardPremiumRatesInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" > </table>
+
+        <table tableName="discount_rate_log" domainObjectName="DiscountRateLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" > </table>
+
+        <table tableName="standard_premium_rates_log" domainObjectName="StandardPremiumRatesLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" > </table>
+
 
             <!-- 参考 javaModelGenerator 的 constructorBased属性-->
             <!--<property name="constructorBased" value="false"/>-->
@@ -288,7 +304,7 @@
                 注意，一个table元素中可以有多个ignoreColumn元素
             <ignoreColumn column="deptId" delimitedColumnName=""/>
             -->
-        </table>
+
 
     </context>
 
